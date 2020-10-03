@@ -11,8 +11,8 @@ var config Config
 
 //
 type Config struct {
-	TWSMS _TWSMS	`json:"twsms"`
-	SMSGO _SMSGO	`json:"smsgo"`
+	TWSMS _TWSMS
+	SMSGO _SMSGO
 }
 
 type _TWSMS struct {
