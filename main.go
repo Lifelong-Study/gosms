@@ -1,9 +1,9 @@
 package gosms
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -55,7 +55,7 @@ func (config *Config) UseSmsGo() *Config {
 }
 
 // 發送文字訊息
-func (config *Config) SendText(mobile, message string) (bool, error) {
+func (config *Config) SendText(mobile, message string) (string, error) {
 
 	if false {
 	} else if config.Platform == PLATFORM_TWSMS {
@@ -64,12 +64,11 @@ func (config *Config) SendText(mobile, message string) (bool, error) {
 		return config.useSmsGoSendText(mobile, message)
 	}
 
-
-	return false, nil
+	return "", errors.New("SMS platform set wrong")
 }
 
 //
-func (config *Config) useTaiwanSMSSendText(mobile, message string) (bool, error) {
+func (config *Config) useTaiwanSMSSendText(mobile, message string) (string, error) {
 
 	// 獲取完整路徑
 	fullURL := formatTWSMSFullURL(mobile, message)
@@ -77,23 +76,23 @@ func (config *Config) useTaiwanSMSSendText(mobile, message string) (bool, error)
 	resp, err := http.Get(fullURL)
 
 	if err != nil {
-		return false, nil
+		return "", err
 	}
 
 	bytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		return false, nil
+		return "", err
 	}
 
-	log.Print(string(bytes))
+	// {"code":"00000","text":"Success","msgid":338982447}
 
-	return true, nil
+	return string(bytes), nil
 }
 
 //
-func (config *Config) useSmsGoSendText(mobile, message string) (bool, error) {
-	return false, nil
+func (config *Config) useSmsGoSendText(mobile, message string) (string, error) {
+	return "", nil
 }
 
 // 私有函式: 組合完整路徑
