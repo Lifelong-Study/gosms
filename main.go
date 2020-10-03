@@ -11,16 +11,16 @@ var config Config
 
 //
 type Config struct {
-	TWSMS _TWSMS
-	SMSGO _SMSGO
+	TWSMS ATWSMS
+	SMSGO ASMSGO
 }
 
-type _TWSMS struct {
+type ATWSMS struct {
 	Account  string
 	Password string
 }
 
-type _SMSGO struct {
+type ASMSGO struct {
 	Account  string
 	Password string
 }
