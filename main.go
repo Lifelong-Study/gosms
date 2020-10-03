@@ -11,18 +11,31 @@ var config Config
 
 //
 type Config struct {
-	TWSMS ATWSMS
-	SMSGO ASMSGO
+	TWSMS C_TWSMS
+	SMSGO C_SMSGO
 }
 
-type ATWSMS struct {
+type C_TWSMS struct {
 	Account  string
 	Password string
 }
 
-type ASMSGO struct {
+type C_SMSGO struct {
 	Account  string
 	Password string
+}
+
+type IIIO interface {
+	OOO()
+	OOO2()
+}
+
+func OOO() {
+	fmt.Print("100")
+}
+
+func OOO2() {
+	fmt.Print("200")
 }
 
 // 初始化
