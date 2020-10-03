@@ -55,21 +55,21 @@ func (config *Config) UseSmsGo() *Config {
 }
 
 // 發送文字訊息
-func (config *Config) SendText(mobile, message string) *Config {
+func (config *Config) SendText(mobile, message string) (bool, error) {
 
 	if false {
 	} else if config.Platform == PLATFORM_TWSMS {
-		config.useTaiwanSMSSendText(mobile, message)
+		return config.useTaiwanSMSSendText(mobile, message)
 	} else if config.Platform == PLATFORM_SMSGO {
-		config.useSmsGoSendText(mobile, message)
+		return config.useSmsGoSendText(mobile, message)
 	}
 
 
-	return config
+	return false, nil
 }
 
 //
-func (config *Config) useTaiwanSMSSendText(mobile, message string) *Config {
+func (config *Config) useTaiwanSMSSendText(mobile, message string) (bool, error) {
 
 	// 獲取完整路徑
 	fullURL := formatTWSMSFullURL(mobile, message)
@@ -77,23 +77,23 @@ func (config *Config) useTaiwanSMSSendText(mobile, message string) *Config {
 	resp, err := http.Get(fullURL)
 
 	if err != nil {
-		return config
+		return false, nil
 	}
 
 	bytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		return config
+		return false, nil
 	}
 
 	log.Print(string(bytes))
 
-	return config
+	return true, nil
 }
 
 //
-func (config *Config) useSmsGoSendText(mobile, message string) *Config {
-	return config
+func (config *Config) useSmsGoSendText(mobile, message string) (bool, error) {
+	return false, nil
 }
 
 // 私有函式: 組合完整路徑
