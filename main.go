@@ -9,42 +9,67 @@ import (
 
 var config Config
 
+type Platform uint8
+
+const (
+	PLATFORM_TWSMS Platform = iota
+	PLATFORM_SMSGO
+)
+
 //
 type Config struct {
-	TWSMS C_TWSMS
-	SMSGO C_SMSGO
+	TWSMS Profile
+	SMSGO Profile
+
+	Platform Platform
 }
 
-type C_TWSMS struct {
+type Profile struct {
 	Account  string
 	Password string
-}
-
-type C_SMSGO struct {
-	Account  string
-	Password string
-}
-
-type IIIO interface {
-	OOO()
-	OOO2()
-}
-
-func OOO() {
-	fmt.Print("100")
-}
-
-func OOO2() {
-	fmt.Print("200")
 }
 
 // 初始化
-func Init(input Config) {
+func Init(input Config) *Config {
 	config = input
+
+	return &config
+}
+
+//
+func (config *Config) SetDefaultPlatform(platform Platform) *Config {
+	config.Platform = platform
+	return config
+}
+
+//
+func (config *Config) UseTaiwanSMS() *Config {
+	config.Platform = PLATFORM_SMSGO
+	return config
+}
+
+//
+func (config *Config) UseSmsGo() *Config {
+	config.Platform = PLATFORM_SMSGO
+	return config
 }
 
 // 發送文字訊息
-func SendText(mobile, message string) (bool, error) {
+func (config *Config) SendText(mobile, message string) *Config {
+
+	if false {
+	} else if config.Platform == PLATFORM_TWSMS {
+		config.useTaiwanSMSSendText(mobile, message)
+	} else if config.Platform == PLATFORM_SMSGO {
+		config.useSmsGoSendText(mobile, message)
+	}
+
+
+	return config
+}
+
+//
+func (config *Config) useTaiwanSMSSendText(mobile, message string) *Config {
 
 	// 獲取完整路徑
 	fullURL := formatTWSMSFullURL(mobile, message)
@@ -52,18 +77,23 @@ func SendText(mobile, message string) (bool, error) {
 	resp, err := http.Get(fullURL)
 
 	if err != nil {
-		return false, nil
+		return config
 	}
 
 	bytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		return false, nil
+		return config
 	}
 
 	log.Print(string(bytes))
 
-	return true, nil
+	return config
+}
+
+//
+func (config *Config) useSmsGoSendText(mobile, message string) *Config {
+	return config
 }
 
 // 私有函式: 組合完整路徑
@@ -74,3 +104,26 @@ func formatTWSMSFullURL(mobile, message string) string {
 
 	return fullURL
 }
+
+
+
+
+
+func tt() {
+	config := Config{
+		TWSMS: Profile{ "",  ""},
+		SMSGO: Profile{"",""},
+	}
+
+	sms := Init(config)
+
+	sms.SetDefaultPlatform(PLATFORM_TWSMS)
+
+	sms.
+		SendText("0963265781", "test")
+}
+
+
+
+
+
