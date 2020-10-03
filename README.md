@@ -1,4 +1,10 @@
 <p align="center">
+    <a href="https://github.com/Lifelong-Study/gosms">
+        <label style="font-size: 30px;">gosms</label>
+    </a>
+</p>
+
+<p align="center">
   <a href="https://travis-ci.com/GoAdminGroup/go-admin"><img alt="Go Report Card" src="https://api.travis-ci.com/GoAdminGroup/go-admin.svg?branch=master"></a>
   <a href="https://goreportcard.com/report/github.com/GoAdminGroup/go-admin"><img alt="Go Report Card" src="https://camo.githubusercontent.com/59eed852617e19c272a4a4764fd09c669957fe75/68747470733a2f2f676f7265706f7274636172642e636f6d2f62616467652f6769746875622e636f6d2f6368656e6867352f676f2d61646d696e"></a>
   <a href="https://goreportcard.com/report/github.com/GoAdminGroup/go-admin"><img alt="golang" src="https://img.shields.io/badge/awesome-golang-blue.svg"></a>
@@ -10,15 +16,15 @@
 
 ## Preface
 
-gosms 是個台灣簡訊平台快速發送的工具
+gosms is a tool for fast delivery of Taiwanese SMS platforms
 
 
 ## Supported Platforms
 
 | Index | Platform | Official Website |
 | --- | --- | --- |
-| 1. | 台灣簡訊 twsms | https://www.twsms.com/ |
-| 2. | 簡訊購 smsgo | https://www.smsgo.com.tw/ |
+| 1. | 台灣簡訊 | https://www.twsms.com/ |
+| 2. | 簡訊購 | https://www.smsgo.com.tw/ |
 
 ## How To Use
 
