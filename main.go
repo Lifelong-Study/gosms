@@ -44,7 +44,7 @@ func (config *Config) SetDefaultPlatform(platform Platform) *Config {
 
 //
 func (config *Config) UseTaiwanSMS() *Config {
-	config.Platform = PLATFORM_SMSGO
+	config.Platform = PLATFORM_TWSMS
 	return config
 }
 
