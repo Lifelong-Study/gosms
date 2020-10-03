@@ -8,7 +8,6 @@ import (
 )
 
 var config Config
-var Config2 Config
 
 // 初始化
 func Init(input Config) {
