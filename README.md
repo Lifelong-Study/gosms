@@ -7,10 +7,10 @@ gosms 是個台灣簡訊平台快速發送的工具
 
 ## Supported Platforms
 
-| Index | Platform | URL |
+| Index | Platform | Official Website |
 | --- | --- | --- |
-| 1. | 台灣簡訊 twsms | http://www.google.com/ |
-| 2. | 簡訊購 smsgo | http://www.google.com/ |
+| 1. | 台灣簡訊 twsms | https://www.twsms.com/ |
+| 2. | 簡訊購 smsgo | https://www.smsgo.com.tw/ |
 
 ## 使用範例
 ```go
