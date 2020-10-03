@@ -37,13 +37,16 @@ import (
 )
 
 func main() {
+
+    // All platforms are optional, no need to add if not used 
     config := gosms.Config{
         TWSMS: gosms.Profile{"account 1", "password 1"}, 
-        SMSGO: gosms.Profile{"account 2", "password 2"},  
+        SMSGO: gosms.Profile{"account 2", "password 2"},
     }
     
-    // Method 1: Specify a preset platform, 
-    //           and all future sending will use this platform to send
+    // Method 1: 
+    //     Specify a preset platform, 
+    //     and all future sending will use this platform to send
     // sms := gosms.Init(config)
     // sms.SetDefaultPlatform(gosms.PLATFORM_TWSMS)
     // result, err := sms.SendText("0963265781", "test")
