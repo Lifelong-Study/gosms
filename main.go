@@ -56,7 +56,7 @@ func SendText(mobile, message string) (bool, error) {
 // 私有函式: 組合完整路徑
 func formatTWSMSFullURL(mobile, message string) string {
 	baseURL := "https://api.twsms.com/json/sms_send.php"
-	fullURL := fmt.Sprintf("%s?username=%s&password=%s", baseURL, config.twsms.Account, config.twsms.Password)
+	fullURL := fmt.Sprintf("%s?username=%s&password=%s", baseURL, config.TWSMS.Account, config.TWSMS.Password)
 	fullURL  = fmt.Sprintf("%s&mobile=%s&message=%s", fullURL, mobile, message)
 
 	return fullURL
