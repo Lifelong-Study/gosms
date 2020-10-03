@@ -42,12 +42,13 @@ func main() {
         SMSGO: gosms.Profile{"account 2", "password 2"},  
     }
     
-    // 方式一: 指定預設平台，未來發送都使用該平台發送 
+    // Method 1: Specify a preset platform, 
+    //           and all future sending will use this platform to send
     // sms := gosms.Init(config)
     // sms.SetDefaultPlatform(gosms.PLATFORM_TWSMS)
     // result, err := sms.SendText("0963265781", "test")
 
-    // 方式二: 每次發送前都指定平台
+    // Method 2: Specify the platform before each sending
     sms := gosms.Init(config)
     result, err := sms.UseTaiwanSMS().
         SendText("mobile", "message")
