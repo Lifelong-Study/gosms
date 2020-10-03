@@ -27,17 +27,17 @@ func main() {
         SMSGO: gosms.Profile{"account 2", "password 2"},
     }
     
+    // Initialization gosms
+    sms := gosms.Init(config)
+
     // Method 1: 
     //     Specify a preset platform, 
     //     and all future sending will use this platform to send
-    // sms := gosms.Init(config)
-    // sms.SetDefaultPlatform(gosms.PLATFORM_TWSMS)
-    // result, err := sms.SendText("0963265781", "test")
+    sms.SetDefaultPlatform(gosms.PLATFORM_TWSMS)
+    result, err := sms.SendText("mobile", "message")
 
     // Method 2: Specify the platform before each sending
-    sms := gosms.Init(config)
-    result, err := sms.UseTaiwanSMS().
-        SendText("mobile", "message")
+    // result, err := sms.UseTaiwanSMS().SendText("mobile", "message")
 
     if err != nil {
         fmt.Print(err)
